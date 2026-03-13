@@ -5,6 +5,7 @@ SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
 WORK_DIR="${WORK_DIR:-$SCRIPT_DIR}"
 cd "$WORK_DIR" || exit 1
 
+# 使用系统 python3 -m gunicorn，避免 PATH 中无 gunicorn 时失败（不使用虚拟环境）
 # 通过 openvpn-webui.wsgi 或 gunicorn_config 识别本项目的 gunicorn 主进程，避免误杀其它 gunicorn
 get_gunicorn_pid() {
   ps -ef | grep gunicorn | grep -E 'openvpn-webui\.wsgi|gunicorn_config' | grep -v grep | awk '{print $2}' | head -1
@@ -16,7 +17,7 @@ web_start() {
     echo "gunicorn already running (pid $pid)"
     return
   fi
-  gunicorn openvpn-webui.wsgi -c gunicorn_config.py >> run.log 2>&1 &
+  python3 -m gunicorn openvpn-webui.wsgi -c gunicorn_config.py >> run.log 2>&1 &
   sleep 2
   pid=$(get_gunicorn_pid)
   if [ -n "$pid" ]; then

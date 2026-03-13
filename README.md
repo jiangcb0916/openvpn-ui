@@ -22,10 +22,14 @@ openvpn网页管理界面
 ---
 ## 安装步骤
 ### 1、下载源代码
-```git pull https://github.com/taoshanghu/openvpn-webui.git  ```
+```bash
+git clone https://github.com/jiangcb0916/openvpn-ui.git
+```
 
 ### 2、切换到项目目录
-```cd openvpn-webui  ```
+```bash
+cd openvpn-ui
+```
 
 ### 3、数据库配置
 - 数据库支持
