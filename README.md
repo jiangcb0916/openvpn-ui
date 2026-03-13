@@ -60,3 +60,4 @@ openvpn网页管理界面
 
 ### 4、使用浏览器访问目标主机http://ip
 要更新配置请修改/etc/nginx/conf.d/openvpn-webui.conf
+# openvpn-ui
