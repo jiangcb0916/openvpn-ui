@@ -4,5 +4,4 @@ vpn_conf
 *.pyc
 *.log
 .idea
-
-
+.specstory/
